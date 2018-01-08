@@ -1,0 +1,112 @@
+<apex:page showHeader="false" standardStylesheets="false" sidebar="false" docType="html-5.0" Controller="StripeSettingsController" applyBodyTag="False" applyHtmlTag="False">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"/>
+<script type="text/javascript">
+    var j$ = jQuery.noConflict();
+</script>    
+
+<head>
+  <title>Update Stripe Settings</title>
+  <apex:slds /> 
+</head>
+
+<body class="slds-scope">
+    
+  <!-- PAGE HEADER -->
+    <div class="slds-page-header" role="banner">
+      <div class="slds-grid">
+        <div class="slds-col">
+          <!-- HEADING AREA -->
+
+            <h1 class="slds-page-header__title slds-truncate" title="Stripe Settings">Stripe Settings</h1>
+          <!-- / HEADING AREA -->
+        </div>
+      <div class="slds-col slds-no-flex slds-grid slds-align-top">
+        <button id="returntoPackages" class="slds-button slds-button--neutral">Return to Packages</button>
+        </div>
+      </div>
+    </div>
+    <!-- / PAGE HEADER -->
+    
+  
+<div id="viewInternal" class="slds-grid slds-show">
+<apex:form >
+    <apex:actionFunction action="{!updateSettings}" name="updatesettings"/>
+    
+    <div class="slds-col slds-large-size--3-of-12">
+      <div aria-labelledby="InternalSettingsform">
+
+      <!-- BOXED AREA -->
+      <fieldset class="slds-box slds-theme--default slds-container--small">
+      <legend id="IntenrnalSettingsform" class="slds-text-heading--medium slds-p-vertical--medium">Update Stripe Settings</legend>
+
+      <!-- CREATE NEW PERMISSIONS FORM -->
+      <form class="slds-form--stacked">
+          
+           <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-01">Live Credentials</label>
+            <div class="slds-form-element__control">
+            <apex:inputField styleClass="slds-input" value="{!stripesettings.Stripe_Secret_Live_Key__c}"/> 
+            </div>
+          </div>
+           
+           <div class="slds-form-element">
+            <label class="slds-form-element__label" for="text-input-01">Test Credentials</label>
+            <div class="slds-form-element__control">
+            <apex:inputField styleClass="slds-input" value="{!stripesettings.Stripe_Secret_Test_Key__c}"/> 
+            </div>
+          </div>
+  
+               
+          <div class="slds-form-element">
+              <div class="slds-form-element__control">
+                  <label class="slds-checkbox">
+                      <apex:inputCheckbox id="formercflag" styleclass="slds-input" value="{!stripesettings.Is_Live_Environment__c}"/>
+                      <span class="slds-checkbox--faux"></span>
+                      <span class="slds-form-element__label">Is Live Environment?</span>
+                  </label>
+              </div>
+          </div>
+
+          
+       <div class="slds-form-element">
+      <div class="slds-form-element__control">
+        <label class="slds-checkbox">
+         <apex:inputCheckbox id="unlockflag" styleclass="slds-input" value="{!stripesettings.Disable_Callout_Queue__c}"/>
+          <span class="slds-checkbox--faux"></span>
+          <span class="slds-form-element__label">Disable Callout Queue</span>
+        </label>
+      </div>
+           </div>
+
+        
+
+          
+        <div class="slds-form-element">
+            <button id="updateSettingsbtn" onclick="updatesettings();" class="slds-button slds-button--brand slds-m-top--medium" type="button">Update Settings</button>
+        </div>
+      </form>
+      <!-- UPDATE SETTINGS FORM -->
+
+      </fieldset>
+
+      <!-- / Filters -->
+    
+</div>
+</div>
+    </apex:form>
+</div>
+    
+
+  <!-- / LAYOUT GRID -->
+</body>
+<script>
+    j$(document).on('click', '#returntoPackages', function(){
+      window.top.location = '/0A3';
+      return false;
+    });
+
+</script>
+</html>
+
+</apex:page>

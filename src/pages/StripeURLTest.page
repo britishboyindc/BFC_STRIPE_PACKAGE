@@ -1,0 +1,6 @@
+<apex:page >
+
+URL for Stripe <br/>
+{!$Site.CurrentSiteUrl}services/apexrest/stripe_npo/stripe/webhooks/v1
+
+</apex:page>
